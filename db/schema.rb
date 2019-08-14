@@ -16,22 +16,23 @@ ActiveRecord::Schema.define(version: 2019_08_13_143141) do
   enable_extension "plpgsql"
 
   create_table "bookings", force: :cascade do |t|
-    t.date "start_date"
-    t.date "end_date"
+    t.date "start_date", null: false
+    t.date "end_date", null: false
     t.bigint "user_id"
     t.bigint "car_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "state"
     t.index ["car_id"], name: "index_bookings_on_car_id"
     t.index ["user_id"], name: "index_bookings_on_user_id"
   end
 
   create_table "cars", force: :cascade do |t|
-    t.string "make"
-    t.string "model"
-    t.string "category"
-    t.text "description"
-    t.integer "rate"
+    t.string "make", null: false
+    t.string "model", null: false
+    t.string "category", null: false
+    t.text "description", null: false
+    t.integer "rate", default: 0, null: false
     t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
